@@ -82,7 +82,7 @@ START WITH employee_id = 1
 CONNECT BY PRIOR employee_id = reports_to;
 
 
-    SELECT *
+    SELECT employee_id,Rpad(' ',level*2)||title
       FROM employee_chart
 START WITH employee_id = 1
 CONNECT BY reports_to = PRIOR employee_Id;
