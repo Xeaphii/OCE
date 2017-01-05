@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 7:32:56 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 7:33:30 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -112,4 +112,10 @@ SELECT * FROM employee_chart;
       FROM employee_chart
 START WITH employee_id = 1
 CONNECT BY reports_to = PRIOR employee_Id
-  ORDER BY 2;
+  ORDER BY title;
+
+           SELECT employee_id, RPAD (' ', LEVEL * 2) || title
+             FROM employee_chart
+       START WITH employee_id = 1
+       CONNECT BY reports_to = PRIOR employee_Id
+ORDER SIBLINGS BY title;
