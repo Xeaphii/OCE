@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 6:47:16 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 6:58:09 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -82,7 +82,21 @@ START WITH employee_id = 1
 CONNECT BY PRIOR employee_id = reports_to;
 
 
-    SELECT employee_id,Rpad(' ',level*2)||title
+    SELECT employee_id, RPAD (' ', LEVEL * 2) || title
       FROM employee_chart
 START WITH employee_id = 1
 CONNECT BY reports_to = PRIOR employee_Id;
+
+    SELECT employee_Id,
+           title,
+           reports_to,
+           LEVEL
+      FROM employee_chart
+START WITH employee_Id = 9
+CONNECT BY employee_id = PRIOR reports_to;
+
+  SELECT DISTINCT employee_id, title, reports_to
+    FROM (  SELECT *
+              FROM employee_chart
+          ORDER BY 2)
+GROUP BY employee_id, title, reports_to;
