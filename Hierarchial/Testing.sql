@@ -62,7 +62,7 @@ CONNECT BY PRIOR employee_id = reports_to;
 
     SELECT *
       FROM EMPLOYEE_CHART
-     WHERE employee_id <> 1
+--     WHERE employee_id = 2
 --START WITH employee_id = 0
 CONNECT BY PRIOR employee_id = reports_to;
 
