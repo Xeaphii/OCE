@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 4:19:54 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 4:23:38 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -42,3 +42,8 @@ INSERT INTO EMPLOYEE_CHART
      VALUES (9, 'Manager 1 ', 6);
 
 COMMIT;
+
+    SELECT *
+      FROM EMPLOYEE_CHART
+START WITH employee_id = 1
+CONNECT BY PRIOR employee_id = reports_to;
