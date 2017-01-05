@@ -100,3 +100,8 @@ CONNECT BY employee_id = PRIOR reports_to;
               FROM employee_chart
           ORDER BY 2)
 GROUP BY employee_id, title, reports_to;
+
+    SELECT employee_id, RPAD (' ', LEVEL * 2) || title
+      FROM employee_chart
+START WITH employee_id = 1
+CONNECT BY reports_to = PRIOR employee_Id;
