@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 4:41:47 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 4:42:18 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -67,3 +67,9 @@ CONNECT BY PRIOR employee_id = reports_to;
 CONNECT BY PRIOR employee_id = reports_to;
 
 SELECT COUNT (*) FROM EMPLOYEE_CHART;
+
+
+    SELECT title, prior title reports_to
+      FROM EMPLOYEE_CHART
+START WITH employee_id = 1
+CONNECT BY PRIOR employee_id = reports_to;
