@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 4:32:45 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 4:41:47 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -60,7 +60,7 @@ START WITH employee_id = 1
 CONNECT BY PRIOR employee_id = reports_to;
 
 
-    SELECT *
+    SELECT DISTINCT *
       FROM EMPLOYEE_CHART
 --     WHERE employee_id = 2
 --START WITH employee_id = 0
