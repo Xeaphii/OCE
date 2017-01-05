@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 4:45:46 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 6:47:16 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -77,6 +77,12 @@ CONNECT BY PRIOR employee_id = reports_to;
 
     SELECT LEVEL, title, PRIOR title reports_to
       FROM EMPLOYEE_CHART
+     WHERE employee_id = 1
 START WITH employee_id = 1
 CONNECT BY PRIOR employee_id = reports_to;
 
+
+    SELECT *
+      FROM employee_chart
+START WITH employee_id = 1
+CONNECT BY reports_to = PRIOR employee_Id;
