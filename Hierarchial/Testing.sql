@@ -1,4 +1,4 @@
-/* Formatted on 1/5/2017 4:23:38 PM (QP5 v5.227.12220.39724) */
+/* Formatted on 1/5/2017 4:28:51 PM (QP5 v5.227.12220.39724) */
 CREATE TABLE EMPLOYEE_CHART
 (
    EMPLOYEE_ID   NUMBER (7) PRIMARY KEY,
@@ -45,5 +45,16 @@ COMMIT;
 
     SELECT *
       FROM EMPLOYEE_CHART
+START WITH employee_id = 1
+CONNECT BY PRIOR employee_id = reports_to;
+
+    SELECT *
+      FROM EMPLOYEE_CHART
+START WITH employee_id = 2
+CONNECT BY PRIOR employee_id = reports_to;
+
+    SELECT *
+      FROM EMPLOYEE_CHART
+     WHERE employee_id <> 1
 START WITH employee_id = 1
 CONNECT BY PRIOR employee_id = reports_to;
